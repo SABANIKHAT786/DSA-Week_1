@@ -1,0 +1,87 @@
+AdultUser.java
+
+public class AdultUser implements LibraryUser {
+    int age;
+    String booktype;
+    public void registerAccount(){
+        if(age > 12){
+            System.out.println("You have successfuly registered under AdultAccount");
+        }
+        else{
+            System.out.println("Age must be greater than 12 years");
+            return;
+        }
+    }
+    public void requestBook(){
+        if(booktype.equals("Fiction")){
+            System.out.println("Book issued and return it within 10 days");
+        }
+        else{
+            System.out.println("Oops, you are allowed to take only adult Fiction books");
+        }
+    }
+}
+
+KidUser.java
+
+public class KidUser implements LibraryUser{
+    int age;
+    String booktype;
+    public void registerAccount(){
+        if(age < 12){
+            System.out.println("You have successfuly registered under KidsAccount");
+        }
+        else{
+            System.out.println("Age must be less than 12 years");
+            return;
+        }
+    }
+    public void requestBook(){
+        if(booktype.equals("Kids")){
+            System.out.println("Book issued successfully, please return the book within 10 days");
+        }
+        else{
+            System.out.println("Oops, you are allowed to take only kids books");
+        }
+    }
+}
+
+Library.java
+
+public interface LibraryUser {
+    void registerAccount();
+    void requestBook();
+    }
+
+LibraryInterface.java  (Main Method)
+
+public class LibraryInterfaceDemo {
+    public static void main(String[] args) {
+        KidUser kid = new KidUser();
+        kid.age = 10;
+        kid.registerAccount();
+
+        kid.booktype = "Kids";
+        kid.requestBook();
+
+        kid.age = 18;
+        kid.registerAccount();
+
+        kid.booktype = "Fiction";
+        kid.requestBook();
+
+
+        AdultUser adult = new AdultUser();
+        adult.age = 5;
+        adult.registerAccount();
+
+        adult.booktype = "Kids";
+        adult.requestBook();
+
+        adult.age = 23;
+        adult.registerAccount();
+
+        adult.booktype = "Fiction";
+        adult.requestBook();
+    }
+}
